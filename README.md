@@ -13,7 +13,7 @@ To use this project, make sure you have Node.js installed. Then, follow these st
 
 To start the application, run the following command:
 
-npm start
+`npm start`
 
 ## Technologies Used
 Node.js
