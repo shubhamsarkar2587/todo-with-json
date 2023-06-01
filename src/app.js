@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 // routes
-app.use('/api/v1/', todoRouter);
+app.use('/todos', todoRouter);
 app.use((err, req, res, next) => {
   console.error(err, 'Internal server error');
   res.status(500).json({ error: 'Internal server error' });

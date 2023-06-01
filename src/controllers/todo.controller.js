@@ -42,20 +42,41 @@ const createTodo = async (req, res) => {
   }
 };
 
-const deleteTodo = async (req, res) => {
+const updateTodo = async (req, res) => {
   try {
-    const { id } = req.params
+    const { id } = req.params;
+    const { title } = req.body;
+
     const todos = await getTodoFromFile();
-    const todo = todos.findIndex((todo) => todo.id === parseInt(id))
-    if (todo != -1) {
-      const filterTodo = todos.filter((todo) => todo.id !== parseInt(id))
-      const saveTodos = await saveTodoToFile(filterTodo);
-      res.status(201).json(saveTodos);
+    const todoIndex = todos.findIndex((todo) => todo.id === parseInt(id));
+
+    if (todoIndex !== -1) {
+      todos[todoIndex].title = title;
+      const saveTodos = await saveTodoToFile(todos);
+      res.status(200).json(saveTodos);
     } else {
       res.status(404).json({ error: 'Todo not found' });
     }
   } catch (err) {
-    console.log(err)
+    console.log(err);
+  }
+};
+
+const deleteTodo = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const todos = await getTodoFromFile();
+    const todoIndex = todos.findIndex((todo) => todo.id === parseInt(id));
+
+    if (todoIndex !== -1) {
+      const filterTodo = todos.filter((todo) => todo.id !== parseInt(id));
+      const saveTodos = await saveTodoToFile(filterTodo);
+      res.status(200).json(saveTodos);
+    } else {
+      res.status(404).json({ error: 'Todo not found' });
+    }
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -63,5 +84,6 @@ module.exports = {
   getAllTodos,
   getTodo,
   createTodo,
+  updateTodo,
   deleteTodo
 };
