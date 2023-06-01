@@ -7,7 +7,7 @@ todo-with-json is a simple Node.js-based project that provides basic CRUD (Creat
 To use this project, make sure you have Node.js installed. Then, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/shubhamsarkar2587/todo-with-json.git`
-3. Install the dependencies: `npm install`
+2. Install the dependencies: `npm install`
 
 ## Usage
 
